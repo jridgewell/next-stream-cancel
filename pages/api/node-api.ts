@@ -3,7 +3,7 @@ import { pipeline } from "stream";
 import { Readable } from "../../readable";
 
 export const config = {
-  responseStreaming: true,
+  supportsResponseStreaming: true,
   runtime: "nodejs",
 };
 
