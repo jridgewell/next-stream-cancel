@@ -1,6 +1,6 @@
 import { Deferred, sleep } from "./sleep";
 
-export function Streamable(write: number) {
+export function Streamable(name: string, write: number) {
   const encoder = new TextEncoder();
   const cleanedUp = new Deferred();
   const aborted = new Deferred();
@@ -19,11 +19,11 @@ export function Streamable(write: number) {
         }
 
         await sleep(100);
-        console.log(`writing ${i}`);
+        console.log(`${name}: writing ${i}`);
         controller.enqueue(encoder.encode(String(i++)));
       },
       cancel() {
-        console.log("stream cancel");
+        console.log(`${name}: stream cancel`);
         cleanedUp.resolve();
       },
     }),

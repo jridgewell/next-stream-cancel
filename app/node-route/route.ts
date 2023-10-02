@@ -15,9 +15,9 @@ export async function GET(req: Request): Promise<Response> {
     "write"
   );
   if (write) {
-    const s = (streamable = Streamable(+write!));
+    const s = (streamable = Streamable("/node-route", +write!));
     req.signal.onabort = () => {
-      console.log("AbortSignal node runtime");
+      console.log("/node-route: AbortSignal");
       s.abort();
     };
     return new Response(s.stream);

@@ -22,8 +22,9 @@ export default function handler(
   // The 2nd request should render the stats. We don't use a query param
   // because edge rendering will create a different bundle for that.
   if (write) {
-    const r = (readable = Readable(+write!));
+    const r = (readable = Readable("/api/node-api", +write!));
     res.on("close", () => {
+      console.log("/api/node-api: res close");
       r.abort();
     });
     return new Promise((resolve) => {

@@ -13,9 +13,9 @@ export async function GET(req: Request): Promise<Response> {
     "write"
   );
   if (write) {
-    const s = (streamable = Streamable(+write!));
+    const s = (streamable = Streamable("/edge-route", +write!));
     req.signal.onabort = () => {
-      console.log("AbortSignal edge runtime");
+      console.log("/edge-route: AbortSignal");
       s.abort();
     };
     return new Response(s.stream);
