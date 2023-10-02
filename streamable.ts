@@ -19,6 +19,7 @@ export function Streamable(write: number) {
         }
 
         await sleep(100);
+        console.log(`writing ${i}`);
         controller.enqueue(encoder.encode(String(i++)));
       },
       cancel() {
